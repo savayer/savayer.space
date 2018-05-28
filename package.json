@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "build": "babel src -d app/js --presets es2015",
-    "gulp": "gulp"
+    "build": "gulp"
   },
   "keywords": [],
   "author": "",
