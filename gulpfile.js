@@ -40,7 +40,7 @@ gulp.task('html', function() {
 gulp.task('default', ['watch', 'convertCss', 'html', 'connect', 'babel']);
 
 gulp.task('watch', function() {
-	gulp.watch('dist/css/styles.scss', ['convertCss']);
+	gulp.watch('src/scss/styles.scss', ['convertCss']);
 	gulp.watch('dist/index.html', ['html']);
 	gulp.watch('src/babel/main.js', ['babel']);
 });
