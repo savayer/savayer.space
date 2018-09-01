@@ -1,0 +1,31 @@
+#block-left {
+    width: 50%;
+    padding: 10px;
+    display: flex;
+    position: relative;
+    z-index: 100;
+
+    .content {
+        max-width: 550px;
+        margin: auto;
+        color: #fff;
+
+        h1 {
+            font-weight: 600;
+            margin: 0;
+            font-size: 2em;
+        }
+
+        p {
+            font-weight: 400;
+            margin: 5px 0 15px 0;
+        }
+    }
+}
+
+#sidebar {
+    background: #f2f3f7;
+    width: 50%;
+    height: 100vh;
+    z-index: 100;
+}
