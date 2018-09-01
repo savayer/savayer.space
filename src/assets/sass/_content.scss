@@ -4,7 +4,7 @@
     display: flex;
     position: relative;
     z-index: 100;
-
+    transition: .5s;
     .content {
         max-width: 550px;
         margin: auto;
@@ -28,4 +28,6 @@
     width: 50%;
     height: 100vh;
     z-index: 100;
+
+    padding: 10px 20px;
 }

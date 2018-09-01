@@ -7,14 +7,16 @@
 }
 
 .overlay {
-    background: rgba(32, 35, 45, 0.68);
-    transform: skew(-15deg, 0);
+    background: rgba(32, 35, 45, 0.68);    
     width: 100%;
     height: 120%;
     position: absolute;
     left: -50%;
     z-index: 50;
-
+    transition: .5s;
+    &.skew {
+        transform: skew(-15deg, 0);
+    }
     .overlay__stars {
         position: absolute;
         width: 100%;

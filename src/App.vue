@@ -3,7 +3,7 @@
     <div class="background-slides">
       <!-- <img src="./assets/img/slide-1.jpg" alt="">   -->
     </div> 
-    <div class="overlay skew">
+    <div :class="isOverlaySkew">
       <div class="overlay__stars"></div>
     </div>
     <section id="block-left">
@@ -11,14 +11,18 @@
         <h1>Hi, there!</h1>
         <p>I'm Junior frontend-developer. It's my homepage, where i write some posts for myself about developing, english language, etc.</p>
         <button class="btn btn-white" @click="show = !show">
-          More Informations
+          More Informations 
         </button>
       </div>
       
     </section>
     <transition name="slide">
       <section v-if="show" id="sidebar">
-        <span class="close"></span>
+        <header>
+          <span class="icon-cancel-circle close" @click="show = !show"></span>
+        </header>
+        <br><br>
+        <img src="./assets/img/sims.jpg" width="100%" alt="" style="box-shadow: 0 0 50px #ccc">
       </section>
     </transition>
   </div>
@@ -30,6 +34,11 @@ export default {
   data() {
     return {
       show: false
+    }
+  },
+  computed: {
+    isOverlaySkew() {
+      return this.show ? 'overlay' : 'overlay skew';
     }
   }
 
