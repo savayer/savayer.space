@@ -1,7 +1,9 @@
 @media (max-width: 768px) {
-    .overlay {
-        transform: skew(0, 0);
+    .overlay {        
         left: 0;
+        &.skew {
+            transform: skew(0, 0)
+        }
     }
 
     .wrapper {

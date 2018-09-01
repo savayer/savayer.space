@@ -4,7 +4,6 @@
     display: flex;
     position: relative;
     z-index: 100;
-    transition: .5s;
     .content {
         max-width: 550px;
         margin: auto;
@@ -26,8 +25,8 @@
 #sidebar {
     background: #f2f3f7;
     width: 50%;
-    height: 100vh;
+    height: 100%;
     z-index: 100;
-
+    overflow-x: hidden;
     padding: 10px 20px;
 }
