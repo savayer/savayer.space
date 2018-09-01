@@ -23,6 +23,7 @@ body {
 .background-slides {
     position: absolute;
     z-index: 25;
+    overflow: hidden;
 }
 
 #block-left {
@@ -86,5 +87,24 @@ body {
 
     to {
         transform: translateY(-500%);
+    }
+}
+
+@media (max-width: 768px) {
+    .overlay {
+        transform: skew(0, 0);
+        left: 0;
+    }
+    .wrapper {
+        width: 100%;
+        overflow-x: hidden;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+    #block-left {
+        width: 100%;
+    }
+    #block-right {
+        display: none;
     }
 }
