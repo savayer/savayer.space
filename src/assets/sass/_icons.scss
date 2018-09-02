@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'icomoon';
-    src: url('../fonts/icomoon.eot?ja7z0a');
-    src: url('../fonts/icomoon.eot?ja7z0a#iefix') format('embedded-opentype'),
-        url('../fonts/icomoon.ttf?ja7z0a') format('truetype'),
-        url('../fonts/icomoon.woff?ja7z0a') format('woff'),
-        url('../fonts/icomoon.svg?ja7z0a#icomoon') format('svg');
+    src: url('../fonts/icomoon.eot?mkbn4v');
+    src: url('../fonts/icomoon.eot?mkbn4v#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.ttf?mkbn4v') format('truetype'),
+        url('../fonts/icomoon.woff?mkbn4v') format('woff'),
+        url('../fonts/icomoon.svg?mkbn4v#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -44,18 +44,28 @@
     content: "\e994";
 }
 
+.icon-menu:before {
+    content: "\e9bd";
+}
+
 .icon-cancel-circle:before {
     content: "\ea0d";
 }
+
 .close {
     color: #464646;
     font-size: 1.3em;
     cursor: pointer;
     float: right;
     transition: .3s;
+
     &:hover {
         transform: scale(1.1);
     }
+}
+
+.icon-exit:before {
+    content: "\ea14";
 }
 
 .icon-telegram:before {

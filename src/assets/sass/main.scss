@@ -18,6 +18,16 @@ body {
     display: flex;
     height: 100vh;
 }
+.container {
+    max-width: 1170px;
+    margin: 50px auto;
+    background: rgba(80, 80, 80, 0.47);
+    border-radius: 5px;
+    z-index: 50;
+    position: relative;
+    color: #fff;
+    padding: 10px 35px;
+}
 
 /*********vue transition***********/
 .slide-enter-active,
