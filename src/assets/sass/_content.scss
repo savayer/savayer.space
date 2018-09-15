@@ -29,9 +29,19 @@
     z-index: 100;
     overflow-x: hidden;
     padding: 10px 20px;
+    color: #757A86;
 
     header {
         margin-bottom: 10px;
+        h3 {
+            color: #757A86;
+            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+        }
+        p {
+            margin: 5px 0;
+        }
     }
     .posts {
         display: flex;

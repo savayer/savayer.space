@@ -53,11 +53,14 @@
 }
 
 .close {
-    color: #464646;
+    color: #6d6d6d;
     font-size: 1.3em;
     cursor: pointer;
-    float: right;
+    position: fixed;
+    -webkit-transition: .3s;
     transition: .3s;
+    right: 15px;
+    top: 15px;
 
     &:hover {
         transform: scale(1.1);

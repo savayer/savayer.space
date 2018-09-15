@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,600');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 * {
     box-sizing: border-box;
 }
@@ -41,6 +42,33 @@ body {
 }
 /*********************************/
 
+.social {
+    a {
+        -webkit-transition: .3s;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 1em;
+        margin-right: 12px;
+        text-decoration: none;
+        transition: .3s;
+        &:hover {
+            -webkit-transform: scale(1.06);
+            transform: scale(1.06);
+        }
+    }
+}
+
+.social--sidebar {
+    a {
+        color: #000;
+    }
+}
+
+.content-center {
+    display: flex;
+    justify-content: center;
+}
 
 @import "bg";
 
