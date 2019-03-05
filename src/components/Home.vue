@@ -4,7 +4,8 @@
     <div :class="isOverlaySkew">
       <div class="overlay__stars"></div>
     </div>
-    <span class="icon-menu custom-icon-menu" @click="show = !show"></span>
+    <span v-if="!show" class="icon-menu custom-icon-menu" @click="show = !show"></span>
+    <span v-else class="icon-cancel-circle close" @click="show = !show"></span>
     <section id="block-left">
       <div class="content">
         <h1>WEB JOURNAL</h1>        
@@ -13,8 +14,7 @@
     </section>
     <transition name="slide">
       <section v-if="show" class="sidebar">
-        <header>
-          <span class="icon-cancel-circle close" @click="show = !show"></span>
+        <header>          
           <h3>Добро пожаловать!</h3>
           <p>
             Если вы это читаете, значит вы перешли на мой сайт с моего круга или hh, тогда я должен вам сказать, что я открыт для предложений и оставить свои контактные данные для связи.            
