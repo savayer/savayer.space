@@ -52,6 +52,21 @@
     content: "\ea0d";
 }
 
+.custom-icon-menu {
+    color: #fff;
+    font-size: 1.5em;
+    cursor: pointer;
+    position: fixed;
+    -webkit-transition: .3s;
+    transition: .3s;
+    left: 15px;
+    top: 15px;
+    &:hover {
+        transform: scale(1.1);
+    }
+    z-index: 100;
+}
+
 .close {
     color: #6d6d6d;
     font-size: 1.3em;
@@ -59,7 +74,7 @@
     position: fixed;
     -webkit-transition: .3s;
     transition: .3s;
-    right: 15px;
+    left: 15px;
     top: 15px;
 
     &:hover {

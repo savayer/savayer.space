@@ -1,36 +1,13 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper reverse">
     <div class="background-slides"></div> 
     <div :class="isOverlaySkew">
       <div class="overlay__stars"></div>
     </div>
+    <span class="icon-menu custom-icon-menu" @click="show = !show"></span>
     <section id="block-left">
       <div class="content">
-        <h1>Hi, there!</h1>
-        <p>I'm Junior frontend-developer. I want to grow as a developer. I like to create web-sites, write code in JavaScript. Skills: HTML, CSS, JavaScript (JQuery, Vuejs), basic knowledge of PHP, Laravel</p>
-        <ul class="ul_buttons">
-          <li>
-            <a class="btn btn-white" @click="show = !show">
-              {{ changeButtonText }}
-            </a>    
-          </li>
-          <li>
-            <router-link to="posts/" class="btn btn-green">
-              Blog
-            </router-link>
-          </li>
-        </ul>              
-        <div class="social">
-          <a href="http://t.me/savayer">
-            <span class="icon-telegram"></span>
-          </a>
-          <a href="skype:savayer">
-            <span class="icon-skype"></span>
-          </a>
-          <a href="https://github.com/savayer">
-            <span class="icon-github"></span>
-          </a>
-        </div>
+        <h1>WEB JOURNAL</h1>        
       </div>
       
     </section>
@@ -55,15 +32,7 @@
           </div>
           <p>
             Или вы мой товарищ, с которым я поделился ссылкой, иначе вы - странник, случайно забредший в дебри сети.
-          </p>
-          <h3>Ну-с, ещё один бложик</h3>
-          <p>
-            Ещё одно создание блога. Сначала был создан блог на MODX'e, затем на Laravel'e, теперь процесс создания первого SPA пока идёт только на фронте, с использованием VueJS, Vuex, Vue-router.
-            Здесь я планировал оставлять различного рода посты, с решенными рабочими проблемами, посты для освежения памяти правилами грамматики английского языка. Всё это можно найти на сотнях и тысячах ресурсов, но у меня есть свободное время на выходных... 
-          </p>
-          <p>
-            Давайте проводить свободное время с пользой, охватывая тёмные области, сочетая приятное с полезным :)
-          </p>
+          </p>      
           <h3>Последние посты</h3>
         </header>
         
@@ -82,6 +51,7 @@
         
       </section>
     </transition>
+
   </div>
 </template>
 <script>
@@ -100,28 +70,7 @@ export default {
           content: `<h1>it's my first experince with SPA</h1>
 
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae delectus architecto a cum. Eligendi, a id! Aliquam quis cumque beatae doloremque, ipsa, quaerat sunt voluptatum iure hic sequi, provident adipisci.</p>`
-        },
-        {
-          id: 2,
-          img: "Vue.png",
-          slug: "first-try-create-spa",
-          pagetitle: "Первая попытка осознания архитектуры SPA",
-          introtext: "Пробуем-с создать SPA с помощью Vuejs...",
-          content: `<h1>it's my first experince with SPA</h1>
-
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae delectus architecto a cum. Eligendi, a id! Aliquam quis cumque beatae doloremque, ipsa, quaerat sunt voluptatum iure hic sequi, provident adipisci.</p>`
-        },
-        {
-          id: 3,
-          img: "Vue.png",
-          slug: "first-try-create-spa",
-          pagetitle: "Первая попытка осознания архитектуры SPA",
-          introtext: "Пробуем-с создать SPA с помощью Vuejs...",
-          content: `<h1>it's my first experince with SPA</h1>
-
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae delectus architecto a cum. Eligendi, a id! Aliquam quis cumque beatae doloremque, ipsa, quaerat sunt voluptatum iure hic sequi, provident adipisci.</p>`
-        }
-        
+        },        
       ]
     };
   },
@@ -132,6 +81,11 @@ export default {
     changeButtonText() {
       return this.show ? "Hide informations" : "More informations";
     }
+  },
+  mounted () {
+    setTimeout(() => {
+      this.show = true
+    }, 1000)
   }
 };
 </script>
