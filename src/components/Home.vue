@@ -17,7 +17,7 @@
         <header>          
           <h3>Добро пожаловать!</h3>
           <p>
-            Если вы это читаете, значит вы перешли на мой сайт с моего круга или hh, тогда я должен вам сказать, что я открыт для предложений и оставить свои контактные данные для связи.            
+            Если вы это читаете, значит вы перешли на мой сайт с моего круга или hh, тогда я должен вам сказать, что я открыт для предложений и оставить свои контактные данные для связи и примеры работ.
           </p>
           <div class="social social--sidebar content-center">
             <a href="http://t.me/savayer">
@@ -38,16 +38,20 @@
         
         <div class="posts">
           <div class="post" v-for="post in posts" :key="post.id">
-            <img :src="require(`@/assets/img/${post.img}`)" alt="">
-            <router-link :to=" 'posts/' + post.slug " class="pagetitle"> {{ post.pagetitle }} </router-link>
-            <div class="introtext"> {{ post.introtext }} </div>
+            <router-link :to="`/posts/${post.id}-${post.attributes.slug}`">
+              <img :src="post.attributes.image" :alt="post.attributes.postTitle">
+            </router-link>
+            <router-link :to="`/posts/${post.id}-${post.attributes.slug}`" class="pagetitle">
+              {{ post.attributes.postTitle }} 
+            </router-link>
+            <div class="introtext"> {{ post.attributes.introtext }} </div>
           </div>
         </div>
-        <button class="btn btn-green-content btn-center">
-          <router-link to="posts/">
+        <router-link to="posts/" style="text-decoration:none">
+          <button class="btn btn-green-content btn-center">
             Все посты
-          </router-link>
-        </button>
+          </button>
+        </router-link>
         
       </section>
     </transition>
@@ -55,37 +59,27 @@
   </div>
 </template>
 <script>
-export default {
-  name: "Home",
-  data() {
-    return {
-      show: false,
-      posts: [
-        {
-          id: 1,
-          img: "Vue.png",
-          slug: "first-try-create-spa",
-          pagetitle: "Первая попытка осознания архитектуры SPA",
-          introtext: "Пробуем-с создать SPA с помощью Vuejs...",
-          content: `<h1>it's my first experince with SPA</h1>
+  import axios from 'axios'
 
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae delectus architecto a cum. Eligendi, a id! Aliquam quis cumque beatae doloremque, ipsa, quaerat sunt voluptatum iure hic sequi, provident adipisci.</p>`
-        },        
-      ]
-    };
-  },
-  computed: {
-    isOverlaySkew() {
-      return this.show ? "overlay" : "overlay skew";
+  export default {
+    name: "Home",
+    data() {
+      return {
+        show: false,
+        posts: []
+      }
     },
-    changeButtonText() {
-      return this.show ? "Hide informations" : "More informations";
+    computed: {
+      isOverlaySkew() {
+        return this.show ? "overlay" : "overlay skew";
+      }
+    },
+    mounted () {
+      axios
+        .get('http://savayer.localhost/api/articles/all')
+        .then(response => {
+          this.posts = response.data
+        })
     }
-  },
-  mounted () {
-    setTimeout(() => {
-      this.show = true
-    }, 1000)
-  }
-};
+  };
 </script>
