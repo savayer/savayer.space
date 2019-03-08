@@ -4,7 +4,11 @@
     <div class="container" style="min-height:100vh;padding:0">
 
       <header class="header">
-        <h1><a href="/">Web Journal</a></h1>
+        <h1>
+          <router-link to="/">
+            Web Journal
+          </router-link>
+        </h1>
         <input type="text" class="search-text ml-auto">
       </header>
 
