@@ -78,8 +78,15 @@
       axios
         .get('http://savayer.localhost/api/articles/all')
         .then(response => {
-          this.posts = response.data
+          let posts = response.data          
+          this.posts = posts.reverse().splice(0,2)
         })
     }
   };
 </script>
+
+<style scoped>
+  body {
+    overflow: hidden;
+  }
+</style>

@@ -2,10 +2,32 @@
   <div class="single-post">
     <div class="background-slides"></div>
     
-    <div class="container" style="min-height: 100vh">        
-        <img :src="post.attributes.image" class="post-image" :alt="post.attributes.postTitle">
-        <h1> {{ post.attributes.postTitle }} </h1>
-        <div class="content" v-html="post.attributes.content"></div>
+    <div class="container" style="min-height: 100vh; padding: 0;background: #fbfbfb;">    
+        <header class="header" style="background: #f8f8f8;">
+          <h1>
+            <router-link to="/">
+              Web Journal
+            </router-link>
+          </h1>
+          <input type="text" class="search-text ml-auto">
+        </header>    
+        <div class="post-wrapper">
+          <div class="breadcrumbs">
+            <span v-for="(crumb, index) in breadcrumbs" :key="index">
+              <router-link class="crumb" :to="crumb.link" v-if="!crumb.thisPost">
+                {{ crumb.text }}
+              </router-link>
+              <span class="crumb" v-else>
+                {{ crumb.text }}
+              </span>
+            </span>
+            
+          </div>
+
+          <h1 class="text-center"> {{ post.attributes.postTitle }} </h1>
+          <img :src="post.attributes.image" class="post-image" :alt="post.attributes.postTitle">
+          <div class="content" v-html="post.attributes.content"></div>
+        </div>
     </div>
 
   </div>
@@ -25,16 +47,24 @@
     data() {
       return {
         id: '',
+        breadcrumbs: [],
         post: {}
       }
     },
-    mounted () {
+    mounted () {      
       this.id = this.slug.split('-')[0]
       axios
         .get('http://savayer.localhost/api/article/'+this.id)
         .then(response => {
           this.post = response.data
-        })
+          let postTitle = response.data.attributes.postTitle
+
+          this.breadcrumbs.push(
+            { text: 'Главная', link: '/', thisPost: false },
+            { text: 'Блог', link: '/posts', thisPost: false },
+            { text: postTitle, link: '', thisPost: true }
+          )
+        })            
     }
   }
 </script>

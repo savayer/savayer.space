@@ -28,21 +28,37 @@
           </ul>
         </div> -->
         <div class="posts-content">
-
-          <div class="post" v-for="(post, index) in posts" :key="index">            
-            <!-- <router-link :to="{ name: 'single-post', params: { slug: post.slug, img: post.img } }"> -->
-            <router-link :to="`/posts/${post.id}-${post.attributes.slug}`">
-              <img :src="post.attributes.image" :alt="post.attributes.postTitle">
-            </router-link>
-            <div class="post-meta">
-              <div class="title">
-                <router-link :to="`/posts/${post.id}-${post.attributes.slug}`">
-                  {{ post.attributes.postTitle }}
-                </router-link>                  
-              </div>
-              <div class="introtext"> {{ post.attributes.introtext }} </div>
-            </div>
+          <div class="breadcrumbs">
+            <span v-for="(crumb, index) in breadcrumbs" :key="index">
+              <router-link class="crumb" :to="crumb.link" v-if="!crumb.thisPost">
+                {{ crumb.text }}
+              </router-link>
+              <span class="crumb" v-else>
+                {{ crumb.text }}
+              </span>
+            </span>
+            
           </div>
+          <masonry
+            :cols="{default: 3, 992: 2, 500: 1}"
+            :gutter="30"
+            >           
+          
+            <div class="post" v-for="(post, index) in posts" :key="index">            
+              <!-- <router-link :to="{ name: 'single-post', params: { slug: post.slug, img: post.img } }"> -->
+              <router-link :to="`/posts/${post.id}-${post.attributes.slug}`">
+                <img :src="post.attributes.image" :alt="post.attributes.postTitle">
+              </router-link>
+              <div class="post-meta">
+                <div class="title">
+                  <router-link :to="`/posts/${post.id}-${post.attributes.slug}`">
+                    {{ post.attributes.postTitle }}
+                  </router-link>                  
+                </div>
+                <div class="introtext"> {{ post.attributes.introtext }}... </div>
+              </div>
+            </div>
+          </masonry>
 
         </div>
       </div>
@@ -53,12 +69,13 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  import axios from 'axios'  
 
   export default {
     name: 'posts',
     data () {
       return {
+        breadcrumbs: [],
         posts: []
       }
     },
@@ -71,7 +88,13 @@
       axios
         .get('http://savayer.localhost/api/articles/all')
         .then(response => {
-          this.posts = response.data
+          let posts = response.data
+          this.posts = posts.reverse()
+
+          this.breadcrumbs.push(
+            { text: 'Главная', link: '/', thisPost: false },
+            { text: 'Блог', link: '/posts', thisPost: true }            
+          )
         })
     }
   }
