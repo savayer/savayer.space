@@ -2,7 +2,7 @@
   <div class="single-post">
     <div class="background-slides"></div>
     
-    <div class="container" style="min-height: 100vh; padding: 0;background: #fbfbfb;">    
+    <div class="container" style="min-height: 100vh;padding: 0 0 30px 0;background: #fbfbfb;">    
         <header class="header" style="background: #f8f8f8;">
           <h1>
             <router-link to="/">
@@ -24,9 +24,9 @@
             
           </div>
 
-          <h1 class="text-center"> {{ post.attributes.postTitle }} </h1>
-          <img :src="post.attributes.image" class="post-image" :alt="post.attributes.postTitle">
-          <div class="content" v-html="post.attributes.content"></div>
+          <h1 class="text-center"> {{ post.postTitle }} </h1>
+          <img :src="post.image" class="post-image" :alt="post.postTitle">
+          <div class="content" v-html="post.content"></div>
         </div>
     </div>
 
@@ -56,13 +56,11 @@
       axios
         .get('http://savayer.localhost/api/article/'+this.id)
         .then(response => {
-          this.post = response.data
-          let postTitle = response.data.attributes.postTitle
-
+          this.post = response.data.attributes       
           this.breadcrumbs.push(
             { text: 'Главная', link: '/', thisPost: false },
             { text: 'Блог', link: '/posts', thisPost: false },
-            { text: postTitle, link: '', thisPost: true }
+            { text: this.post.postTitle, link: '', thisPost: true }
           )
         })            
     }

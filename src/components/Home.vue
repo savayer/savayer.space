@@ -84,9 +84,3 @@
     }
   };
 </script>
-
-<style scoped>
-  body {
-    overflow: hidden;
-  }
-</style>
