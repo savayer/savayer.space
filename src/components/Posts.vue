@@ -9,7 +9,7 @@
             Web Journal
           </router-link>
         </h1>
-        <input type="text" class="search-text ml-auto">
+        <input type="text" class="search-text ml-auto" v-model="search">
       </header>
 
       <div class="posts-wrapper">
@@ -44,7 +44,7 @@
             :gutter="30"
             >           
           
-            <div class="post" v-for="(post, index) in posts" :key="index">            
+            <div class="post" v-for="(post, index) in searching" :key="index">            
               <!-- <router-link :to="{ name: 'single-post', params: { slug: post.slug, img: post.img } }"> -->
               <router-link :to="`/posts/${post.id}-${post.attributes.slug}`">
                 <img :src="post.attributes.image" :alt="post.attributes.postTitle">
@@ -76,7 +76,15 @@
     data () {
       return {
         breadcrumbs: [],
-        posts: []
+        posts: [],
+        search: ''
+      }
+    },
+    computed: {
+      searching () {        
+        let s = this.search.toLowerCase()
+
+        return this.posts.filter(post => Object.values(post.attributes).some(m => m.toString().toLowerCase().includes(s)));
       }
     },
     methods: {
@@ -84,13 +92,18 @@
         return require(`@/assets/img/${pic}`)
       }
     },
+    metaInfo: {
+      title: 'Web Journal Blog',
+      meta: [
+        { vmid: 'description', property: 'description', content: 'Savayer Web Journal Blog, a little bit of delirium' }        
+      ],
+    },
     mounted () {
       axios
         .get('http://savayer.localhost/api/articles/all')
         .then(response => {
           let posts = response.data
-          this.posts = posts.reverse()
-
+          this.posts = posts.reverse()          
           this.breadcrumbs.push(
             { text: 'Главная', link: '/', thisPost: false },
             { text: 'Блог', link: '/posts', thisPost: true }            

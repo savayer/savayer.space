@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Meta from 'vue-meta'
 import VueMasonry from 'vue-masonry-css'
 import App from './App.vue'
 import Home from './components/Home.vue'
@@ -8,6 +9,7 @@ import Posts from './components/Posts.vue'
 
 Vue.use(Router)
 Vue.use(VueMasonry)
+Vue.use(Meta)
 
 const routes = [
   { path: '/', component: Home },

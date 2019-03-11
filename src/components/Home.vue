@@ -74,6 +74,12 @@
         return this.show ? "overlay" : "overlay skew";
       }
     },
+    metaInfo: {
+      title: 'Web Journal',
+      meta: [
+        { vmid: 'description', property: 'description', content: 'Savayer Web Journal, a little bit of delirium' }        
+      ],
+    },
     mounted () {
       axios
         .get('http://savayer.localhost/api/articles/all')

@@ -51,6 +51,11 @@
         post: {}
       }
     },
+    metaInfo () {
+      return {
+        title: this.post.postTitle + ' | Web Journal'
+      }      
+    },
     mounted () {      
       this.id = this.slug.split('-')[0]
       axios
@@ -62,6 +67,7 @@
             { text: 'Блог', link: '/posts', thisPost: false },
             { text: this.post.postTitle, link: '', thisPost: true }
           )
+          
         })            
     }
   }
