@@ -15,23 +15,9 @@
     <transition name="slide">
       <section v-if="show" class="sidebar">
         <header>          
-          <h3>Добро пожаловать!</h3>
-          <p>
-            Если вы это читаете, значит вы перешли на мой сайт с моего круга или hh, тогда я должен вам сказать, что я открыт для предложений и оставить свои контактные данные для связи и примеры работ.
-          </p>
-          <div class="social social--sidebar content-center">
-            <a href="http://t.me/savayer">
-              <span class="icon-telegram"></span>
-            </a>
-            <a href="skype:savayer">
-              <span class="icon-skype"></span>
-            </a>
-            <a href="https://github.com/savayer">
-              <span class="icon-github"></span>
-            </a>
-          </div>
-          <p>
-            Или вы мой товарищ, с которым я поделился ссылкой, иначе вы - странник, случайно забредший в дебри сети.
+          <h3>Добро пожаловать!</h3>        
+          <p style="padding: 0 20px">
+            Вы, либо мой товарищ, с которым я поделился ссылкой, либо вы - странник, случайно забредший в дебри сети. Сие небольшое SPA служит шпаргалкой, где показываются различного рода записи
           </p>      
           <h3>Последние посты</h3>
         </header>
