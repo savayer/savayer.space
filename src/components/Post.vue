@@ -26,6 +26,11 @@
 
           <h1 class="text-center"> {{ post.postTitle }} </h1>
           <img :src="post.image" class="post-image" :alt="post.postTitle">
+          <div class="tags">
+            <div class="tags__item " :class="'tags__item--'+(index+1)" v-for="(tag, index) in post.tags" :key="index">
+              {{ tag.name }}
+            </div>
+          </div>
           <div class="content" v-html="post.content"></div>
         </div>
     </div>
@@ -53,7 +58,7 @@
     },
     metaInfo () {
       return {
-        title: this.post.postTitle + ' | Web Journal'
+        title: this.post.postTitle ? this.post.postTitle  + ' | Web Journal' : '' + ' Web Journal'
       }      
     },
     mounted () {      
@@ -66,8 +71,7 @@
             { text: 'Главная', link: '/', thisPost: false },
             { text: 'Блог', link: '/posts', thisPost: false },
             { text: this.post.postTitle, link: '', thisPost: true }
-          )
-          
+          )          
         })            
     }
   }
