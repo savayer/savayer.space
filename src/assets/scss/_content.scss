@@ -97,3 +97,113 @@
 .text-center {
     text-align: center;
 }
+
+.content-header {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filter-icon {
+    margin-left: auto;
+}
+.filter-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: -20px;
+    margin-bottom: 15px;    
+    padding-bottom: 10px;
+    user-select: none;
+}
+.filter-img-wrapper {
+    width: 15px;
+    padding-top: 12px;
+}
+
+.open-filter {
+    cursor: pointer;
+}
+
+.filter-img {
+    width: 100%;    
+}
+
+.tags {
+    display: flex;
+    justify-content: center;    
+}
+
+.tags__item {
+    margin:10px 5px;
+    font-size: 14px;
+    color: #fff;
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 5px;
+    box-shadow: 1px 0 20px rgba(184, 184, 184, 0.8);
+}
+
+@mixin bgColor($index) {
+    @if $index == 1 {
+        background: #61c436;        
+    } @else if $index == 2 {
+        background: #f4b23f;        
+    } @else if $index == 3 {
+        background: #ca85ca;        
+    } @else if $index == 4 {
+        background: #e54e7e;        
+    } @else if $index == 5 {
+        background: #607ec7;        
+    } @else if $index == 6 {
+        background: #cf4d35;        
+    } @else if $index == 7 {
+        background: #46c49c;        
+    }
+}
+
+@for $i from 1 to 10 {
+    .tags__item--#{$i} {
+        @include bgColor($i);
+    }
+}
+
+.filter-label {
+    position: relative;
+    cursor: pointer;
+    margin: 0 10px;
+    background: #38b2e8;        
+    padding: 2px 8px 2px 32px;
+    color: #fff;
+    border-radius: 5px;    
+    input {
+        position: absolute;
+        opacity: 0;
+        height: 0;
+        width: 0;
+    }
+    .filter-checkmark {
+        position: absolute;
+        top: 2px;
+        left: 12px;
+        height: 20px;
+        width: 20px;
+        &:after {
+            content: '';
+            position: absolute;            
+            left: 0;
+            top: 4px;
+            width: 5px;
+            height: 10px;
+            border: solid #fff;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+            opacity: .4;
+        }
+    }
+
+    input:checked ~ .filter-checkmark:after,
+    &:hover input ~ .filter-checkmark:after {
+        opacity: 1;
+    }
+    
+}
