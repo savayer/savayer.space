@@ -114,6 +114,7 @@
     margin-bottom: 15px;    
     padding-bottom: 10px;
     user-select: none;
+    flex-wrap: wrap;
 }
 .filter-img-wrapper {
     width: 15px;
@@ -170,7 +171,7 @@
 .filter-label {
     position: relative;
     cursor: pointer;
-    margin: 0 10px;
+    margin: 7px 10px 0 10px;
     background: #38b2e8;        
     padding: 2px 8px 2px 32px;
     color: #fff;
@@ -200,9 +201,10 @@
             opacity: .4;
         }
     }
-
-    input:checked ~ .filter-checkmark:after,
     &:hover input ~ .filter-checkmark:after {
+        opacity: .8;
+    }
+    input:checked ~ .filter-checkmark:after{
         opacity: 1;
     }
     
