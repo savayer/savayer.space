@@ -13,38 +13,40 @@
       </header>
 
       <div class="posts-wrapper">
-        <!-- <div class="posts-sidebar">
-          <ul class="categories">
-            <li class="active"><a href="#10">All</a></li>
-            <li><a href="#1">Category 1</a></li>
-            <li><a href="#2">Category 2</a></li>
-            <li><a href="#3">Category 3</a></li>
-            <li><a href="#4">Category 4</a></li>
-            <li><a href="#5">Category 5</a></li>
-            <li><a href="#6">Category 6</a></li>
-            <li><a href="#7">Category 7</a></li>
-            <li><a href="#8">Category 8</a></li>
-            <li><a href="#9">Category 9</a></li>
-          </ul>
-        </div> -->
         <div class="posts-content">
-          <div class="breadcrumbs">
-            <span v-for="(crumb, index) in breadcrumbs" :key="index">
-              <router-link class="crumb" :to="crumb.link" v-if="!crumb.thisPost">
-                {{ crumb.text }}
-              </router-link>
-              <span class="crumb" v-else>
-                {{ crumb.text }}
-              </span>
-            </span>
-            
-          </div>
+          <div class="content-header">              
+            <div class="breadcrumbs">
+              <span v-for="(crumb, index) in breadcrumbs" :key="index">
+                <router-link class="crumb" :to="crumb.link" v-if="!crumb.thisPost">
+                  {{ crumb.text }}
+                </router-link>
+                <span class="crumb" v-else>
+                  {{ crumb.text }}
+                </span>
+              </span>              
+            </div>
+            <div class="filter-icon">
+              <div class="filter-img-wrapper open-filter" @click="openFilter = !openFilter">
+                <img :src="getImg('filter.svg')" class="filter-img" title="Filter" alt="filter">
+              </div>              
+            </div>
+            <transition name="slide-fade">
+              <div class="filter-wrapper" v-show="openFilter">        
+                <label v-for="(tag, tag_id) in tags" :key="tag_id" class="filter-label">
+                  <input type="checkbox" v-model="checkedTags" :value="tag.id">
+                  <span class="filter-checkmark"></span>            
+                  {{ tag.name }}
+                </label>
+              </div>
+            </transition>
+          </div>              
+
           <masonry
             :cols="{default: 3, 992: 2, 500: 1}"
             :gutter="30"
             >           
           
-            <div class="post" v-for="(post, index) in searching" :key="index">            
+            <div class="post" v-for="(post, index) in changeCheckedTags" :key="index">            
               <!-- <router-link :to="{ name: 'single-post', params: { slug: post.slug, img: post.img } }"> -->
               <router-link :to="`/posts/${post.id}-${post.attributes.slug}`">
                 <img :src="post.attributes.image" :alt="post.attributes.postTitle">
@@ -69,7 +71,7 @@
 </template>
 
 <script>
-  import axios from 'axios'  
+  import axios from 'axios'
 
   export default {
     name: 'posts',
@@ -77,20 +79,34 @@
       return {
         breadcrumbs: [],
         posts: [],
-        search: ''
+        tags: [],
+        search: '',
+        openFilter: false,
+        checkedTags: []        
       }
     },
     computed: {
-      searching () {        
+      /* searching () {        
         let s = this.search.toLowerCase()
 
         return this.posts.filter(post => Object.values(post.attributes).some(m => m.toString().toLowerCase().includes(s)));
+      } */
+      changeCheckedTags() {
+        if (this.checkedTags.length > 0) {        
+          let filteredPosts = [];
+          this.posts.forEach(post => {
+            if ( post.attributes.tags.some(tag => this.checkedTags.includes(tag.tag_id)) ) {
+              filteredPosts.push(post);
+            }
+          })
+          return filteredPosts
+        } else return this.posts
       }
     },
     methods: {
       getImg(pic) {
         return require(`@/assets/img/${pic}`)
-      }
+      }      
     },
     metaInfo: {
       title: 'Web Journal Blog',
@@ -101,9 +117,18 @@
     mounted () {
       axios
         .get('http://savayer.localhost/api/articles/all')
-        .then(response => {
+        .then(response => {          
           let posts = response.data
           this.posts = posts.reverse()          
+          // create tags array
+          this.posts.forEach(post => {
+            post.attributes.tags.forEach(tag => {
+              if (!this.tags.map(function(tagName) { return tagName.name; }).includes( tag.name )) {
+                this.tags.push({ id: tag.tag_id, name: tag.name });
+              }
+            })
+          })          
+
           this.breadcrumbs.push(
             { text: 'Главная', link: '/', thisPost: false },
             { text: 'Блог', link: '/posts', thisPost: true }            
