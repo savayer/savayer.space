@@ -9,7 +9,21 @@
             Web Journal
           </router-link>
         </h1>
-        <input type="text" class="search-text ml-auto" v-model="search">
+        <div class="search_wrapper ml-auto">
+          <input type="text" class="search-text" v-model="search">
+          <div class="search_results" v-show="showSearchResults"> 
+            
+            <div v-if="searching.length === 0" class="search_results__result">
+              <span style="color: #555">No results</span>
+            </div>
+
+            <div v-else class="search_results__result" v-for="(item, index) in searching" :key="index">                          
+              <router-link :to="`/posts/${item.id}-${item.attributes.slug}`" class="search_results__link">
+                {{ item.attributes.postTitle }}
+              </router-link>              
+            </div>
+          </div>
+        </div>
       </header>
 
       <div class="posts-wrapper">
@@ -81,20 +95,22 @@
         posts: [],
         tags: [],
         search: '',
+        showSearchResults: false,
         openFilter: false,
         checkedTags: []        
       }
     },
     computed: {
-      /* searching () {        
+      searching () {
         let s = this.search.toLowerCase()
-
-        return this.posts.filter(post => Object.values(post.attributes).some(m => m.toString().toLowerCase().includes(s)));
-      } */
+        this.emptySearchCondition(s)
+        return this.posts.filter(post => Object.values(post.attributes).some(m => m.toString().toLowerCase().includes(s)));        
+      },
       changeCheckedTags() {
         if (this.checkedTags.length > 0) {        
           let filteredPosts = [];
           this.posts.forEach(post => {
+            // если встречается хоть один пост с выбранным тэгом, записываем его в массив, который будет разобран в v-for
             if ( post.attributes.tags.some(tag => this.checkedTags.includes(tag.tag_id)) ) {
               filteredPosts.push(post);
             }
@@ -106,7 +122,10 @@
     methods: {
       getImg(pic) {
         return require(`@/assets/img/${pic}`)
-      }      
+      },
+      emptySearchCondition (s) {
+        s ? this.showSearchResults = true : this.showSearchResults = false
+      },
     },
     metaInfo: {
       title: 'Web Journal Blog',

@@ -209,3 +209,36 @@
     }
     
 }
+.search_wrapper {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    min-width: 300px;
+}
+.search_results {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    padding: 3px 15px 8px 15px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 0 20px rgba(204, 204, 204, .4);
+    font-size: 14px;
+}
+
+.search_results__result {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    &:last-child {
+        border: 0;
+        padding-bottom: 0;
+    }
+}
+
+.search_results__link {
+    color: #555;
+    text-decoration: none;
+}
