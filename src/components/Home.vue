@@ -68,7 +68,7 @@
     },
     mounted () {
       axios
-        .get('http://savayer.localhost/api/articles/all')
+        .get(`${process.env.VUE_APP_SITE_URL}/api/articles/all`)
         .then(response => {
           let posts = response.data          
           this.posts = posts.reverse().splice(0,2)

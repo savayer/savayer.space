@@ -64,7 +64,7 @@
     mounted () {      
       this.id = this.slug.split('-')[0]
       axios
-        .get('http://savayer.localhost/api/article/'+this.id)
+        .get(`${process.env.VUE_APP_SITE_URL}/api/article/${this.id}`)        
         .then(response => {
           this.post = response.data.attributes       
           this.breadcrumbs.push(
