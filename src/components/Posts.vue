@@ -29,16 +29,8 @@
       <div class="posts-wrapper">
         <div class="posts-content">
           <div class="content-header">              
-            <div class="breadcrumbs">
-              <span v-for="(crumb, index) in breadcrumbs" :key="index">
-                <router-link class="crumb" :to="crumb.link" v-if="!crumb.thisPost">
-                  {{ crumb.text }}
-                </router-link>
-                <span class="crumb" v-else>
-                  {{ crumb.text }}
-                </span>
-              </span>              
-            </div>
+            <Breadcrumbs :bc="breadcrumbs" />          
+
             <div class="filter-icon">
               <div class="filter-img-wrapper open-filter" @click="openFilter = !openFilter">
                 <img :src="getImg('filter.svg')" class="filter-img" title="Filter" alt="filter">
@@ -86,6 +78,7 @@
 
 <script>
   import axios from 'axios'
+  import Breadcrumbs from './chunks/breadcrumbs'
 
   export default {
     name: 'posts',
@@ -153,6 +146,9 @@
             { text: 'Блог', link: '/posts', thisPost: true }            
           )
         })
+    },
+    components: {
+      Breadcrumbs
     }
   }
 </script>

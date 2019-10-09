@@ -29,24 +29,15 @@
       <div class="posts-wrapper">
         <div class="posts-content">
           <div class="content-header">              
-            <div class="breadcrumbs">
-              <span v-for="(crumb, index) in breadcrumbs" :key="index">
-                <router-link class="crumb" :to="crumb.link" v-if="!crumb.thisPost">
-                  {{ crumb.text }}
-                </router-link>
-                <span class="crumb" v-else>
-                  {{ crumb.text }}
-                </span>
-              </span>              
-            </div>
+            <Breadcrumbs :bc="breadcrumbs" />
           </div>              
 
           <masonry
-            :cols="{default: 2, 600: 1}"
+            :cols="{default: 2, 992: 1}"
             :gutter="30"
             >           
           
-            <div class="post post--work" v-for="(work, index) in searching" :key="index">
+            <div class="post post--work" v-for="(work, index) in this.works" :key="index">
               <router-link :to="`/portfolio/${work.id}-${work.attributes.slug}`">
                 <img :src="work.attributes.image" :alt="work.attributes.name">
               </router-link>
@@ -55,8 +46,7 @@
                   <router-link :to="`/portfolio/${work.id}-${work.attributes.slug}`">
                     {{ work.attributes.name }}
                   </router-link>                  
-                </div>
-                <!-- <div class="introtext"> {{ work.attributes.introtext }}... </div> -->
+                </div>                
               </div>
             </div>
           </masonry>
@@ -71,6 +61,7 @@
 
 <script>
   import axios from 'axios'
+  import Breadcrumbs from './chunks/breadcrumbs'
 
   export default {
     name: 'works',
@@ -112,6 +103,9 @@
             { text: 'Портфолио', link: '/portfolio', thisPost: true }            
           )
         })
+    },
+    components: {
+      Breadcrumbs
     }
   }
 </script>
