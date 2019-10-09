@@ -14,7 +14,7 @@
           <Breadcrumbs :bc="breadcrumbs" />          
 
           <h1 class="text-center"> {{ work.name }} </h1>
-          <a target="_blank" :href="post.image"><img :src="work.image" class="work-image" :alt="work.name"></a>
+          <a target="_blank" :href="work.image"><img :src="work.image" class="work-image" :alt="work.name"></a>
           <div class="content content--work" v-html="work.content"></div>
         </div>
     </div>
