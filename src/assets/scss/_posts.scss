@@ -147,6 +147,15 @@ ul.categories {
     .content {
         padding: 20px 25px;
     }
+    .content--work {
+        text-align: center;
+    }
+}
+
+.post-wrapper--work {
+    p {
+        font-size: 20px;
+    }
 }
 
 .breadcrumbs {
