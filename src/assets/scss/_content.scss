@@ -115,6 +115,9 @@
     padding-bottom: 10px;
     user-select: none;
     flex-wrap: wrap;
+    @media (max-width: 768px) {
+        margin-top: 0;
+    }
 }
 .filter-img-wrapper {
     width: 15px;
@@ -214,6 +217,12 @@
     display: flex;
     justify-content: flex-end;
     min-width: 300px;
+    @media (max-width: 767px) {
+        min-width: 240px
+    }
+    @media (max-width: 550px) {
+        margin: auto;
+    }
 }
 .search_results {
     position: absolute;
