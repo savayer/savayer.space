@@ -61,7 +61,7 @@
 
 <script>
   import axios from 'axios'
-  import Breadcrumbs from './chunks/breadcrumbs'
+  import Breadcrumbs from './modules/breadcrumbs'
 
   export default {
     name: 'works',
