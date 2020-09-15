@@ -54,7 +54,7 @@
       posts: []
     }),
     computed: {
-      isOverlaySkew() {
+      isOverlaySkew () {
         return this.show ? "overlay" : "overlay skew";
       }
     },
