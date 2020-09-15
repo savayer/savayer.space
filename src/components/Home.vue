@@ -49,12 +49,10 @@
 
   export default {
     name: "Home",
-    data() {
-      return {
-        show: false,
-        posts: []
-      }
-    },
+    data: () => ({
+      show: false,
+      posts: []
+    }),
     computed: {
       isOverlaySkew() {
         return this.show ? "overlay" : "overlay skew";
