@@ -20,17 +20,6 @@ export default new Router({
             path: "/posts", 
             name: 'Posts',
             component: () => import('./components/Posts.vue'),
-        },
-        { 
-            path: "/portfolio", 
-            name: 'Works',
-            component: () => import('./components/Works.vue')
-        },
-        { 
-            path: "/portfolio/:slug", 
-            name: "single-work",
-            component: () => import('./components/Work.vue'),
-            props: true
-        },
+        }
     ]
 });
