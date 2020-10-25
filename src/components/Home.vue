@@ -4,11 +4,11 @@
     <div :class="isOverlaySkew">
       <div class="overlay__stars"></div>
     </div>
-    <span v-if="!show" class="icon-menu custom-icon-menu" @click="show = !show"></span>
-    <span v-else class="icon-cancel-circle close" @click="show = !show"></span>
+<!--    <span v-if="!show" class="icon-menu custom-icon-menu" @click="show = !show"></span>
+    <span v-else class="icon-cancel-circle close" @click="show = !show"></span>-->
     <section id="block-left">
       <div class="content">
-        <h1>WEB JOURNAL</h1>        
+        <h1>WELCOME</h1>
       </div>
       
     </section>
