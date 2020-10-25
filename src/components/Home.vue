@@ -12,7 +12,7 @@
       </div>
       
     </section>
-    <transition name="slide">
+<!--    <transition name="slide">
       <section v-if="show" class="sidebar">
         <header>          
           <h3>Добро пожаловать!</h3>        
@@ -40,7 +40,7 @@
         </router-link>
         
       </section>
-    </transition>
+    </transition>-->
 
   </div>
 </template>
